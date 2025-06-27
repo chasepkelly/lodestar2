@@ -1,15 +1,13 @@
 {
-  "name": "lodestar-apollo3-server",
+  "name": "express-test-server",
   "version": "1.0.0",
-  "description": "LodeStar Apollo3 API Server",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.18.0",
-    "axios": "^1.6.0"
+    "express": "^4.18.0"
   },
   "engines": {
     "node": ">=18.0.0"
