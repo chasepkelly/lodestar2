@@ -295,7 +295,61 @@ app.post('/api/counties', async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+// ADD THE TEST ENDPOINTS HERE:
+// Test endpoints for demo purposes
+app.post('/test/login', (req, res) => {
+  console.log('📥 POST /test/login - Demo mode');
+  res.json({
+    status: 1,
+    session_id: 'demo_session_' + Date.now(),
+    message: 'Demo login successful - this is a mock response',
+    note: 'Use /test/ endpoints for demo functionality'
+  });
+});
 
+app.post('/test/calculate', (req, res) => {
+  console.log('📥 POST /test/calculate - Demo mode');
+  const { state, county, city, address, purchase_price } = req.body;
+  
+  res.json({
+    status: 1,
+    message: 'Demo calculation completed',
+    input: { state, county, city, address, purchase_price },
+    total_title_fees: 850.00,
+    total_title_premiums: 1150.00,
+    total_recording_fees: 275.00,
+    total_transfer_taxes: 920.00,
+    total_all_fees: 3195.00,
+    title_fees: [
+      { fee_name: "Title Search", fee_amount: 350.00 },
+      { fee_name: "Title Examination", fee_amount: 500.00 }
+    ],
+    title_premiums: [
+      { fee_name: "Owner's Policy", fee_amount: 1150.00, coverage_amount: purchase_price }
+    ],
+    recording_fees: [
+      { fee_name: "Deed Recording", fee_amount: 75.00 },
+      { fee_name: "Mortgage Recording", fee_amount: 200.00 }
+    ],
+    transfer_taxes: [
+      { fee_name: "State Transfer Tax", fee_amount: 920.00 }
+    ],
+    note: 'This is a mock response for demo purposes'
+  });
+});
+
+app.get('/test', (req, res) => {
+  res.json({
+    message: 'LodeStar Apollo3 Demo Endpoints',
+    note: 'These endpoints provide mock responses for testing',
+    available_endpoints: {
+      login: 'POST /test/login',
+      calculate: 'POST /test/calculate',
+      property_tax: 'POST /test/property-tax'
+    }
+  });
+});
+// END OF TEST ENDPOINTS
 // Error handling
 app.use((error, req, res, next) => {
   console.error('❌ Server error:', error);
